@@ -1,0 +1,14 @@
+
+PUT   http://localhost:3000/api/users/update/1
+content-type: application/json
+
+{
+    "firstname": "fft",
+    "lastname": "Aashish"
+} 
+
+###
+GET  http://localhost:3000/api/users/1
+
+
+
