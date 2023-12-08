@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"errors"
+	"fmt"
 	"strconv"
 
 	"github.com/Aashish32/GORM-CRUD/database"
@@ -44,7 +46,7 @@ func GetAllProducts(c *fiber.Ctx) error {
 
 	}
 
-	return c.Status(400).JSON(ResponseProducts)
+	return c.Status(200).JSON(ResponseProducts)
 
 }
 
@@ -70,4 +72,25 @@ func DeleteProduct(c *fiber.Ctx) error {
 	}
 	database.Database.Db.Delete(&models.Product{})
 	return c.JSON("Deleted id:", idstring)
+}
+
+func UpdateProduct(c *fiber.Ctx) error {
+	var product models.Product
+	id, err := c.ParamsInt("id")
+	if err != nil {
+		return c.Status(400).JSON(err)
+	}
+
+	database.Database.Db.Find(&product, "id=?", id)
+
+	if product.Id == 0 {
+		return errors.New(fmt.Sprintf("User with id %d does not exist", id))
+	}
+	err = c.BodyParser(&product)
+	if err != nil {
+		return c.Status(400).JSON(err)
+	}
+	database.Database.Db.Save(&product)
+	return c.Status(200).JSON("database updated successfully")
+
 }

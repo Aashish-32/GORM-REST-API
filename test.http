@@ -1,5 +1,16 @@
+//CREATE USER
+POST  http://localhost:3000/api/users
+content-type: application/json
+
+{
+    "firstname": "Artee",
+    "lastname": "Aanchal"
+}
+
+###
 
 //GET ALL USERS
+
 GET http://localhost:3000/api/users
 ###
 
@@ -9,6 +20,17 @@ GET http://localhost:3000/api/users/2
 //Delete User
 ###
 DELETE http://localhost:3000/api/users/delete/7
+
+###
+
+//UPDATE USER
+PUT http://localhost:3000/api/users/update/1
+content-type: application/json
+
+{
+    "firstname": "Ashish",
+    "lastname": "pppp"
+}
 
 ###
 //ADD Products
@@ -33,5 +55,19 @@ GET http://localhost:3000/api/products/1
 
 //DELETE PRODUCT
 ###
-DELETE  http://localhost:3000/api/products/1
+DELETE http://localhost:3000/api/products/delete/1
+
+
+//UPDATE PRODUCT
+###
+PUT http://localhost:3000/api/products/update/1
+content-type: application/json
+
+{
+    "name": "Baltra fan triple blades",
+    "serial_number": "144332"
+}
+
+
+
 

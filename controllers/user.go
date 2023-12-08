@@ -17,6 +17,7 @@ type User struct {
 }
 
 func CreateResponseUser(user models.User) User {
+
 	return User{Id: user.Id, Firstname: user.Firstname, Lastname: user.Lastname}
 }
 
