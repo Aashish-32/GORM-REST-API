@@ -89,6 +89,21 @@ func UpdateUser(c *fiber.Ctx) error {
 
 }
 
-// func DeleteUser(c *fiber.Ctx, id string) error {
+func DeleteUser(c *fiber.Ctx) error {
+	user := models.User{}
 
-// }
+	id, err := c.ParamsInt("id")
+	if err != nil {
+		errorMessage := fmt.Sprintf("Error fetching user with ID %d: %s", id, err)
+		return c.Status(400).JSON("integer id parameter is not found", errorMessage)
+	}
+	database.Database.Db.Find(&user, "id=?", id)
+
+	if user.Id == 0 {
+		return errors.New(fmt.Sprintf("User with id %d does not exist", id))
+	}
+	database.Database.Db.Delete(&user)
+	message := fmt.Sprintf("User succesfully deleted : %v", user)
+	return c.Status(200).JSON(message)
+
+}

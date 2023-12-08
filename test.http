@@ -1,14 +1,37 @@
 
-PUT   http://localhost:3000/api/users/update/1
+//GET ALL USERS
+GET http://localhost:3000/api/users
+###
+
+//GET User
+GET http://localhost:3000/api/users/2
+
+//Delete User
+###
+DELETE http://localhost:3000/api/users/delete/7
+
+###
+//ADD Products
+POST  http://localhost:3000/api/products
 content-type: application/json
 
 {
-    "firstname": "fft",
-    "lastname": "Aashish"
-} 
+    "name": "Jaegermeister 60ml vodka",
+    "serial_number": "10699"
+}
 
+//GET PRODUCTS
 ###
-GET  http://localhost:3000/api/users/1
+GET http://localhost:3000/api/products
 
 
+
+//GET PRODUCT
+###
+GET http://localhost:3000/api/products/1
+
+
+//DELETE PRODUCT
+###
+DELETE  http://localhost:3000/api/products/1
 
